@@ -32,11 +32,11 @@ A single Python script handles everything: the ordering UI, communication with M
 ## Showcase
 
 In the video below I demonstrate the ordering UI, as if a customer were ordering on the kiosk’s display.
-VIDEO
-![video showcase](https://raw.githubusercontent.com/matrndev/kiosk/refs/heads/main/media/video.mp4)
+<video src='https://github.com/user-attachments/assets/a3f08d1a-9c22-4148-b5c5-0326f5076a9e'>
 
 A receipt printed for the customer:
-![receipt image](https://raw.githubusercontent.com/matrndev/kiosk/refs/heads/main/media/receipt.jpg)
+
+<img src="https://raw.githubusercontent.com/matrndev/kiosk/refs/heads/main/media/receipt.jpg" alt="receipt image" height="600"/>
 
 Here’s how the kitchen display looks like when a new order is placed. The kitchen display connects to the kiosk over a local network. The kitchen display can be literally anything that runs a web browser -- e.g. mobile phone, tablet, thin client connected to a monitor.
 ![kitchen display image](https://raw.githubusercontent.com/matrndev/kiosk/refs/heads/main/media/kitchen.png)
