@@ -8,6 +8,9 @@ Because of the proof-of-concept nature of this project (after all, this was made
 
 However, if you are interested in this project in any way, would like to build it, make a fork, or if you have any other questions, I’ll be happy to help! Shoot me an e-mail at hello@matrn.dev.
 
+![kiosk photo](https://raw.githubusercontent.com/matrndev/kiosk/refs/heads/main/media/image.jpg)
+![3d model image](https://raw.githubusercontent.com/matrndev/kiosk/refs/heads/main/media/3D%20model%201.png)
+
 ## Hardware
 
 - Custom 3D printed enclosure (3D models here) 
@@ -30,12 +33,13 @@ A single Python script handles everything: the ordering UI, communication with M
 
 In the video below I demonstrate the ordering UI, as if a customer were ordering on the kiosk’s display.
 VIDEO
+![video showcase](https://raw.githubusercontent.com/matrndev/kiosk/refs/heads/main/media/video.mp4)
 
 A receipt printed for the customer:
-RECIEPT IMAGE
+![receipt image](https://raw.githubusercontent.com/matrndev/kiosk/refs/heads/main/media/receipt.jpg)
 
 Here’s how the kitchen display looks like when a new order is placed. The kitchen display connects to the kiosk over a local network. The kitchen display can be literally anything that runs a web browser -- e.g. mobile phone, tablet, thin client connected to a monitor.
-KITCHEN DISPLAY IMAGE
+![kitchen display image](https://raw.githubusercontent.com/matrndev/kiosk/refs/heads/main/media/kitchen.png)
 
 ## Possible future improvements
 
