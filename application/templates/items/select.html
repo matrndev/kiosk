@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+	<div class="columns p-1">
+		<div class="column is-one-fifth mt-1 ml-1" style="border-right: 2px dotted;">
+			<aside class="menu">
+				<ul class="menu-list">
+					{% for section in sections %}
+					{% if sectionID == section.section %}
+					<li><a onclick="global_loading_bar()" href="?section={{section.section}}"
+							class="is-size-4 has-text-weight-bold is-active">{{section.name}}</a></li>
+					{% else %}
+					<li><a onclick="global_loading_bar()" href="?section={{section.section}}"
+							class="is-size-4 has-text-weight-bold">{{section.name}}</a></li>
+					{% endif %}
+					{% endfor %}
+
+				</ul>
+			</aside>
+		</div>
+		<div class="column">
+			<div class="pt-1 columns has-text-centered">
+				{% for item in items[:4] %}
+				{% if item.section == sectionID %}
+				<div class="column is-one-quarter">
+					<a onclick="global_loading_bar()" href="/items/add?id={{item.id}}&selectSection={{sectionID}}">
+						<img height="196" width="196" src="../static/images/items/{{item.id}}.jpg"
+							style="border: 0.4px #fff solid; border-radius: 6px;">
+						<h2 class="is-size-5 has-text-black-ter">{{item.name}}</h2>
+						<h3 class="is-size-6 has-text-grey-dark has-text-weight-light">{{item.price}} EUR</h3>
+					</a>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+			<div class="pt-0 columns has-text-centered">
+				{% for item in items[4:] %}
+				{% if item.section == sectionID %}
+				<div class="column is-one-quarter">
+					<a onclick="global_loading_bar()" href="/items/add?id={{item.id}}&selectSection={{sectionID}}">
+						<img height="196" width="196" src="../static/images/items/{{item.id}}.jpg"
+							style="border: 0.4px #fff solid; border-radius: 6px;">
+						<h2 class="is-size-5 has-text-black-ter">{{item.name}}</h2>
+						<h3 class="is-size-6 has-text-grey-dark has-text-weight-light">{{item.price}} EUR</h3>
+					</a>
+				</div>
+				{% endif %}
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+
+	<br>
+	<nav class="navbar is-fixed-bottom">
+		<div class="navbar-menu">
+			<div class="navbar-start">
+				<a onclick="global_loading_bar()" href="/order/cancel" class="navbar-item button is-danger is-medium has-text-weight-bold m-1 is-light">CANCEL ORDER</a>
+				<a onclick="" href="#" class="is-light navbar-item button is-info is-medium has-text-weight-bold m-1">{{order_total}} EUR</a>
+			</div>
+			<div class="navbar-end">
+				{% if showNext %}
+					<a onclick="global_loading_bar()" href="/coupon"
+						class="navbar-item button is-primary is-medium has-text-weight-bold m-1 is-light">CONTINUE</a>
+				{% endif %}
+			</div>
+		</div>
+	</nav>
+	{% if newItem %}
+		<div id="modal" class="modal is-active">
+			<div class="modal-background"></div>
+			<div class="modal-content">
+				<div class="box has-text-centered">
+					<p class="is-size-2 has-text-weight-bold">Item added to order</p>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	<script>
+		setTimeout(() => {
+			document.getElementById("modal").classList = "modal"
+		}, 800);
+	</script>
+
+
+	<div id="global-loading-bar" class="modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="box has-text-centered">
+				<p class="is-size-3 has-text-black-ter has-text-weight-bold">Please wait...</p>
+				<br>
+				<progress class="progress is-large is-info" max="100"></progress>
+			</div>
+		</div>
+	</div>
+	<script>
+		function global_loading_bar() {
+			document.getElementById("global-loading-bar").classList = "modal is-active"
+			setTimeout(() => {
+				document.getElementById("global-loading-bar").classList = "modal"
+			}, 5000);
+		}
+	</script>
+</body>
+
+</html>

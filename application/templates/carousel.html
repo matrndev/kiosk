@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="cs">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>matrn.dev Kiosk</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="relative_box" id="box">
+        <a href="/items" onclick="" id="pg">
+            <img id="carousel" src="/static/images/carousel/0.png" alt="image carousel"
+                style="width: 100%; height: auto; object-fit: scale-down;">
+
+        </a>
+    </div>
+
+    <script>
+        var n = 0;
+        setInterval(() => {
+            n = n + 1;
+            var stringn = n.toString();
+            document.getElementById("carousel").src = "/static/images/carousel/" + stringn + ".png";
+
+            console.log(stringn)
+            if (n == 3) {
+                n = -1;
+            }
+        }, 20000);
+    </script>
+</body>
+
+</html>

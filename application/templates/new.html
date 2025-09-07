@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+        body {
+            font-size: 1rem;
+            margin: 0px;
+            padding: 0px;
+            color: #efedff;
+            background-color: #020012;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;" class="is-size-3 has-text-weight-bold mb-1">Nice to meet you!</h1>
+    <div class="container m-3 has-text-centered">
+        <br>
+        <p class="is-size-4">Your ordering system is waiting to be set up.</p>
+        <p class="is-size-2">The admin panel feature is unfortunately not finished yet.</p>
+        <s><p>Please log into the admin panel at <strong>{{address}}</strong>. <br>Make sure you are on the same network as this device.</p>
+        <p>Use the following credentials when logging in:</p>
+        <br>
+        <strong>username: admin</strong>
+        <br>
+        <strong>password: {{password}}</strong></s>
+    </div>
+</body>
+
+</html>

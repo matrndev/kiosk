@@ -1,0 +1,6 @@
+flask
+pymongo
+shortuuid
+python-socketio
+flask-socketio
+escpos

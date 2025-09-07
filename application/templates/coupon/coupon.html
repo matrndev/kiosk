@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+    <h1 style="text-align: center;" class="is-size-3 has-text-weight-bold mb-1">Apply coupon</h1>
+    <div class="m-2 container">
+        <form action="/coupon/apply_coupon" method="post">
+            <input class="input is-rounded is-large is-primary mb-3 has-text-centered" autofocus="" type="text" name="coupon">
+        </form>
+        <a href="/tip" class="button is-primary is-fullwidth is-justify-content-center mb-3" style="height: 7rem; font-size: 3.5rem; font-weight: bold;"><b>I don't have a coupon</a>
+    </div>
+    
+
+    <br><br>
+    <nav class="navbar is-fixed-bottom">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a href="/order/cancel" class="is-light navbar-item button is-danger is-medium has-text-weight-bold m-1">CANCEL ORDER</a>
+            </div>
+            <div class="navbar-end">
+                <a href="/tip" class="is-light navbar-item button is-primary is-medium has-text-weight-bold m-1">CONTINUE</a>
+            </div>
+        </div>
+    </nav>
+    {% if modal %}
+		<div id="modal" class="modal is-active">
+			<div class="modal-background"></div>
+			<div class="modal-content">
+				<div class="box has-text-centered">
+					{% if applied %}
+                        <p class="is-size-4 has-text-weight-bold">{{salepercentage}} % off was applied to the entire order.</p>
+                        <br>
+                        <p class="is-size-6 has-text-weight-normal">Current total: {{total}} EUR</p>
+                        {% if remaining > 0 %}
+                            <p class="is-size-6 has-text-weight-normal">You can use this coupon {{remaining}} more times.</p>
+                        {% else %}
+                            <p class="is-size-6 has-text-weight-normal">You cannot use this coupon again.</p>
+                        {% endif %}
+                    {% elif error %}
+                        <p class="is-size-6 has-text-weight-normal">Invalid coupon.</p>
+                    {% endif %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	{% if applied %}
+        <script>
+            setTimeout(() => {
+                document.getElementById("modal").classList = "modal"
+                window.location.replace("http://localhost:5961/tip");
+            }, 4000);
+        </script>
+    {% elif error %}
+        <script>
+            setTimeout(() => {
+                document.getElementById("modal").classList = "modal"
+            }, 2000);
+        </script>
+    {% endif %}
+
+    <div id="global-loading-bar" class="modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="box has-text-centered">
+				<p class="is-size-3 has-text-black-ter has-text-weight-bold">Please wait...</p>
+				<br>
+				<progress class="progress is-large is-info" max="100"></progress>
+			</div>
+		</div>
+	</div>
+	<script>
+		function global_loading_bar() {
+			document.getElementById("global-loading-bar").classList = "modal is-active"
+			setTimeout(() => {
+				document.getElementById("global-loading-bar").classList = "modal"
+			}, 5000);
+		}
+        setInterval(() => {
+            fetch("http://localhost:5961/coupon/wake")
+        }, 5500);
+	</script>
+</body>
+
+</html>

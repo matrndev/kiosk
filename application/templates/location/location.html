@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+    <div class="columns">
+        <div class="ml-3 column has-text-centered" style="border-right: 2px dotted;">
+            <h1 class="is-size-3 has-text-weight-bold mb-4">Where to?</h1>
+            <div class="container">
+                {% for option in delivery_options %}
+                    {% if option.id == delivery %}
+                        <a onclick="global_loading_bar()"href="/location/unchoose?id={{option.id}}&type=delivery" class="button is-fullwidth is-justify-content-center is-large mb-2 is-info">{{option.friendly_name}}</a>
+                    {% else %}
+                        <a onclick="global_loading_bar()"href="/location/choose?id={{option.id}}&type=delivery" class="button is-primary is-fullwidth is-justify-content-center is-large mb-2">{{option.friendly_name}}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="mr-3 column is-half has-text-centered">
+            <h1 class="is-size-3 has-text-weight-bold mb-4">Select a room to bill</h1>
+            <div class="container">
+                {% for option in rooms %}
+                    {% if option.id == room %}
+                        <a onclick="global_loading_bar()"href="/location/unchoose?id={{option.id}}&type=room" class="button is-fullwidth is-justify-content-center is-large mb-2 is-info">{{option.friendly_name}}</a>
+                    {% else %}
+                        <a onclick="global_loading_bar()"href="/location/choose?id={{option.id}}&type=room" class="button is-primary is-fullwidth is-justify-content-center is-large mb-2">{{option.friendly_name}}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <br><br>
+    <nav class="navbar is-fixed-bottom">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a onclick="global_loading_bar()" href="/order/cancel" class="navbar-item button is-danger is-medium has-text-weight-bold m-1 is-light">CANCEL ORDER</a>
+            </div>
+            <div class="navbar-end">
+                {% if canContinue %}
+                    <a href="/location/continue" onclick="global_loading_bar()" class="navbar-item button is-primary is-medium has-text-weight-bold m-1 is-light">CONTINUE</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div id="global-loading-bar" class="modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="box has-text-centered">
+				<p class="is-size-3 has-text-black-ter has-text-weight-bold">Please wait...</p>
+				<br>
+				<progress class="progress is-large is-info" max="100"></progress>
+			</div>
+		</div>
+	</div>
+	<script>
+		function global_loading_bar() {
+			document.getElementById("global-loading-bar").classList = "modal is-active"
+			setTimeout(() => {
+				document.getElementById("global-loading-bar").classList = "modal"
+			}, 5000);
+		}
+	</script>
+</body>
+
+</html>

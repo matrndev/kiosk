@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Display</title>
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        socket.on('kitchen_update', async function (data) {
+            location.reload();
+        })
+        {% if play == True %}
+            var audio = new Audio('../static/audio/{{song}}.mp3');
+            audio.play();
+        {% endif %}
+    </script>
+</head>
+
+<body>
+    
+    <div class="columns m-1" id="card-container">
+        {% for order in orders %}
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content has-text-centered">
+                            <p class="title is-1">{{order.delivery_option}}</p>
+                            <p class="subtitle is-3">{{order.datetime}} • {{order.room}} • {{order.id}}</p>
+                            <a class="button is-danger" href="/kitchen?finishOrder={{order.id}}">Finish</a>
+                        </div>
+                    </div>
+
+                    <div class="content" style="font-size: 20px;">
+                        <ul>
+                            {% for item in order["items"] %}
+                            {% if not item.recipient == "" and not item.recipient == undefined %}
+                            <li><a href='http://10.20.1.124:3961/print?orderID={{order["id"]}}&recipient={{item.recipient}}&item={{item.item_name}}&modifications={{item["modifications"]}}'>{{ item.item_name }}</a></li>
+                            {% else %}
+                            <li>{{ item.item_name }}</li>
+                            {% endif %}
+                            {% for modification in item["modifications"] %}
+                            <ul>
+                                <li>{{ modification }}</li>
+                            </ul>
+                            {% endfor %}
+                            {% endfor %}
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+    
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+    <h1 style="text-align: center;" class="is-size-3 has-text-weight-bold mb-1">Finish order?</h1>
+    <div class="columns">
+        <div class="ml-3 column">
+            <div class="m-2 container">
+                <div class="content">
+                    <ul>
+                        <li><a href="/kiosk/order/edit/items"><a href="/kiosk/order/edit/items">items</a></li>
+                        <ul>
+                            {% for item in orderitems %}
+                                <li>{{item.item_name}}</li>
+                                <ul>
+                                    {% for mod in item.modifications %}
+                                        <li>{{mod}}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endfor %}
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mr-3 column">
+            <div class="m-2 container content">
+                <ul>
+                    <li><a href="/kiosk/order/edit/coupon">Applied coupon:</a> {{couponname}} -- sale {{couponsale}} %</li>
+                    <li><a href="/kiosk/order/edit/tip">Tip:</a> {{tipprice}} EUR</li>
+                    <li><a href="/kiosk/order/edit/delivery">Delivering to:</a> {{location}}</li>
+                    <li><a href="/kiosk/order/edit/payment">Billing room:</a> {{room}}</li>
+                    <li><a href="/kiosk/order/edit/payment">Total:</a> {{total}} EUR</li>
+                </ul>
+            </div>
+            <div class="m-2 container">
+                <p class="is-size-4">Ready to order?</p>
+                <p>Place the order by pressing the button below.</p>
+            </div>
+        </div>
+    </div>
+    
+
+    <br><br>
+    <nav class="navbar is-fixed-bottom">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a href="/order/cancel" onclick="global_loading_bar()" class="is-light navbar-item button is-danger is-medium has-text-weight-bold m-1">CANCEL ORDER</a>
+            </div>
+            <div class="navbar-end">
+                <a href="/finish/done" onclick="global_loading_bar()" class="is-light navbar-item button is-primary is-medium has-text-weight-bold m-1">CONTINUE</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="global-loading-bar" class="modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="box has-text-centered">
+				<p class="is-size-3 has-text-black-ter has-text-weight-bold">Please wait...</p>
+				<br>
+				<progress class="progress is-large is-info" max="100"></progress>
+			</div>
+		</div>
+	</div>
+	<script>
+		function global_loading_bar() {
+			document.getElementById("global-loading-bar").classList = "modal is-active"
+			setTimeout(() => {
+				document.getElementById("global-loading-bar").classList = "modal"
+			}, 5000);
+		}
+	</script>
+</body>
+
+</html>

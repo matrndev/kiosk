@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+    <h1 style="text-align: center;" class="is-size-3 has-text-weight-bold mb-1">Working on it!</h1>
+    <div class="container m-3 has-text-centered">
+        <br>
+        <p class="is-size-4">The order will be with you in <strong>10 minutes</strong>.</p>
+        <p class="is-size-4">Delivering to: <strong>{{location}}</strong>.</p>
+        <p class="is-size-4">The total of <strong>{{total}} EUR</strong> is billed to room number <strong>{{room}}</strong>.</p>
+        <br><br><br>
+        <p class="is-size-2">Please keep the reciept.</p>
+    </div>
+    
+
+    <br><br>
+    <nav class="navbar is-fixed-bottom">
+        <div class="navbar-menu">
+            <div class="navbar-start">
+            </div>
+            <div class="navbar-end">
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        setTimeout(() => {
+            window.location.replace("http://localhost:5961/");
+        }, 10000);
+    </script>
+</body>
+
+</html>
